@@ -42,7 +42,7 @@ export function Navigation() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <span className="text-xl font-bold font-space-grotesk text-primary">Portfolio</span>
+            <span className="text-xl font-bold font-space-grotesk text-primary">Portafolio</span>
           </div>
 
           {/* Desktop Navigation */}

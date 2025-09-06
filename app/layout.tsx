@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 })
 
 export const metadata: Metadata = {
-  title: "Portfolio - Desarrollador Full Stack",
+  title: "Portafolio - Desarrollador Full Stack",
   description: "Estudiante de Ingeniería en Sistemas especializado en desarrollo web moderno",
   generator: "v0.app",
 }
