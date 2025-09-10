@@ -139,12 +139,16 @@ export function ProjectCarousel() {
   const project = projects[currentProject]
 
   return (
-    <section id="proyectos" className="py-20 bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="proyectos" className="py-20 bg-background relative">
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/10" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <ScrollReveal>
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk text-foreground mb-4">Mis Proyectos</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk gradient-text mb-4">Mis Proyectos</h2>
             <p className="text-xl text-muted-foreground font-dm-sans max-w-2xl mx-auto">
               Una selección de proyectos que demuestran mi experiencia en desarrollo full-stack y diseño de experiencias
               de usuario.
@@ -152,137 +156,172 @@ export function ProjectCarousel() {
           </div>
         </ScrollReveal>
 
-        {/* Progress Bar */}
-        <ScrollReveal delay={200}>
-          <div className="mb-8">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-muted-foreground font-dm-sans">
-                Proyecto {currentProject + 1} de {projects.length}
-              </span>
-              <Button variant="ghost" size="sm" onClick={togglePlayPause} className="text-muted-foreground hover-lift">
-                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+        <ScrollReveal delay={100}>
+          <div className="mb-12 glass rounded-2xl p-6 border border-white/10">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-4">
+                <span className="text-lg font-semibold text-foreground font-space-grotesk">
+                  Proyecto {currentProject + 1} de {projects.length}
+                </span>
+                <span className="text-sm text-muted-foreground font-dm-sans">{project.title}</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={togglePlayPause}
+                className="text-primary hover:text-primary-foreground hover:bg-primary/20 hover-lift neon-glow"
+              >
+                {isPlaying ? <Pause size={18} /> : <Play size={18} />}
               </Button>
             </div>
-            <div className="w-full bg-muted rounded-full h-1">
-              <div
-                className="bg-primary h-1 rounded-full transition-all duration-100 ease-linear shimmer"
-                style={{ width: `${progress}%` }}
-              />
+
+            <div className="relative">
+              <div className="w-full bg-muted/30 rounded-full h-3 overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-primary via-accent to-primary h-3 rounded-full transition-all duration-100 ease-linear shimmer neon-glow"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent rounded-full opacity-50" />
+            </div>
+
+            <div className="flex justify-between items-center mt-2 text-xs text-muted-foreground">
+              <span>Progreso automático</span>
             </div>
           </div>
         </ScrollReveal>
 
         {/* Main Carousel */}
-        <ScrollReveal delay={400}>
+        <ScrollReveal delay={100}>
           <div
-            className="grid lg:grid-cols-2 gap-8 items-start"
+            className="grid lg:grid-cols-2 gap-12 items-start"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
             {/* Left Side - Images */}
-            <div className="space-y-4">
+            <div className="space-y-6">
               {/* Main Image */}
               <div className="relative group">
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
                 <img
                   src={project.thumbnails[selectedThumbnail] || "/placeholder.svg"}
                   alt={`${project.title} - Vista ${selectedThumbnail + 1}`}
-                  className="w-full h-80 object-cover rounded-lg shadow-lg transition-all duration-500 group-hover:scale-[1.02] hover-lift"
+                  className="relative w-full h-80 object-cover rounded-xl shadow-2xl transition-all duration-500 group-hover:scale-[1.02] hover-lift glass border border-white/10"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 rounded-lg" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
-              {/* Thumbnails */}
-              <div className="grid grid-cols-4 gap-2">
+              <div className="grid grid-cols-4 gap-3">
                 {project.thumbnails.map((thumb, index) => (
                   <button
                     key={index}
                     onClick={() => setSelectedThumbnail(index)}
-                    className={`relative overflow-hidden rounded-md transition-all duration-300 hover-lift ${
+                    className={`relative overflow-hidden rounded-lg transition-all duration-300 hover-lift group ${
                       selectedThumbnail === index
-                        ? "ring-2 ring-primary ring-offset-2 ring-offset-background pulse-glow"
-                        : "hover:opacity-80"
+                        ? "ring-3 ring-primary ring-offset-2 ring-offset-background neon-glow scale-105"
+                        : "hover:scale-105 hover:ring-2 hover:ring-white/30"
                     }`}
                   >
                     <img
                       src={thumb || "/placeholder.svg"}
                       alt={`Vista ${index + 1}`}
-                      className="w-full h-20 object-cover"
+                      className="w-full h-20 object-cover transition-all duration-300 group-hover:brightness-110"
                     />
+                    <div
+                      className={`absolute inset-0 transition-all duration-300 ${
+                        selectedThumbnail === index ? "bg-primary/20" : "bg-black/20 group-hover:bg-black/10"
+                      }`}
+                    />
+                    {selectedThumbnail === index && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
+                      </div>
+                    )}
                   </button>
                 ))}
               </div>
             </div>
 
             {/* Right Side - Project Info */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-3xl font-bold font-space-grotesk text-foreground mb-4 gradient-text">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground font-dm-sans leading-relaxed text-lg">{project.description}</p>
-              </div>
+            <div className="space-y-8">
+              <div className="glass rounded-2xl p-8 border border-white/10">
+                <h3 className="text-4xl font-bold font-space-grotesk gradient-text mb-6">{project.title}</h3>
+                <p className="text-muted-foreground font-dm-sans leading-relaxed text-lg mb-6">{project.description}</p>
 
-              {/* Technologies */}
-              <div>
-                <h4 className="text-lg font-semibold font-space-grotesk text-foreground mb-3">Tecnologías</h4>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech, index) => (
-                    <span
-                      key={tech}
-                      className={`px-3 py-1 bg-muted text-muted-foreground rounded-full text-sm font-medium hover-lift animate-stagger-${(index % 4) + 1}`}
+                {/* Technologies */}
+                <div className="mb-8">
+                  <h4 className="text-xl font-semibold font-space-grotesk text-foreground mb-4">Tecnologías</h4>
+                  <div className="flex flex-wrap gap-3">
+                    {project.technologies.map((tech, index) => (
+                      <span
+                        key={tech}
+                        className={`px-4 py-2 glass rounded-full text-sm font-medium hover-lift animate-stagger-${(index % 4) + 1} border border-white/10 text-foreground hover:border-primary/50 transition-all duration-300`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex gap-4">
+                  {project.liveUrl && (
+                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover-lift pulse-glow px-6 py-3 text-lg font-semibold">
+                      <ExternalLink size={18} className="mr-2" />
+                      Ver Demo
+                    </Button>
+                  )}
+                  {project.githubUrl && (
+                    <Button
+                      variant="outline"
+                      className="border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground hover-lift glass px-6 py-3 text-lg font-semibold bg-transparent"
                     >
-                      {tech}
-                    </span>
-                  ))}
+                      <Github size={18} className="mr-2" />
+                      Código
+                    </Button>
+                  )}
                 </div>
               </div>
+            </div>
+          </div>
+        </ScrollReveal>
 
-              {/* Action Buttons */}
-              <div className="flex gap-4">
-                {project.liveUrl && (
-                  <Button className="bg-primary hover:bg-primary/90 text-primary-foreground hover-lift pulse-glow">
-                    <ExternalLink size={16} className="mr-2" />
-                    Ver Demo
-                  </Button>
-                )}
-                {project.githubUrl && (
-                  <Button
-                    variant="outline"
-                    className="border-primary text-primary hover:bg-primary hover:text-primary-foreground hover-lift bg-transparent"
-                  >
-                    <Github size={16} className="mr-2" />
-                    Código
-                  </Button>
-                )}
+          <div className="flex justify-center items-center mt-16">
+            <div className="glass rounded-2xl p-6 border border-white/10 flex items-center space-x-6">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={prevProject}
+                className="hover-lift glass border-white/20 hover:border-primary/50 w-12 h-12 p-0 bg-transparent"
+              >
+                <ChevronLeft size={20} />
+              </Button>
+
+              <div className="flex space-x-3">
+                {projects.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToProject(index)}
+                    className={`transition-all duration-300 hover-lift rounded-full ${
+                      index === currentProject
+                        ? "w-12 h-4 bg-primary neon-glow"
+                        : "w-4 h-4 bg-muted hover:bg-muted-foreground hover:scale-125"
+                    }`}
+                  />
+                ))}
               </div>
+
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={nextProject}
+                className="hover-lift glass border-white/20 hover:border-primary/50 w-12 h-12 p-0 bg-transparent"
+              >
+                <ChevronRight size={20} />
+              </Button>
             </div>
           </div>
-        </ScrollReveal>
 
-        {/* Navigation Controls */}
-        <ScrollReveal delay={600}>
-          <div className="flex justify-center items-center mt-12 space-x-4">
-            <Button variant="outline" size="sm" onClick={prevProject} className="hover-lift bg-transparent">
-              <ChevronLeft size={16} />
-            </Button>
-
-            <div className="flex space-x-2">
-              {projects.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToProject(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 hover-lift ${
-                    index === currentProject ? "bg-primary pulse-glow" : "bg-muted hover:bg-muted-foreground"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <Button variant="outline" size="sm" onClick={nextProject} className="hover-lift bg-transparent">
-              <ChevronRight size={16} />
-            </Button>
-          </div>
-        </ScrollReveal>
       </div>
     </section>
   )

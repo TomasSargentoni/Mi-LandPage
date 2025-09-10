@@ -30,8 +30,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${spaceGrotesk.variable} ${dmSans.variable}`}>
-      <body className="font-sans antialiased">
-        <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+      <body className="font-sans antialiased bg-background text-foreground">
+        <div className="fixed inset-0 bg-background grid-pattern">
+          <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
+        </div>
+        <div className="relative z-10">
+          <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
+        </div>
         <Analytics />
       </body>
     </html>

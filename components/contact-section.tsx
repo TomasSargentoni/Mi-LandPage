@@ -2,268 +2,213 @@
 
 import type React from "react"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram, CheckCircle } from "lucide-react"
+import { useState, useEffect } from "react"
+import { Mail, Github, Linkedin, Instagram, MessageCircle } from "lucide-react"
+import { ScrollReveal } from "@/components/scroll-reveal"
+
+interface SocialPlatform {
+  name: string
+  icon: React.ReactNode
+  href: string
+  username: string
+  description: string
+  color: string
+  bgGradient: string
+  hoverEffect: string
+}
+
+const socialPlatforms: SocialPlatform[] = [
+  {
+    name: "GitHub",
+    icon: <Github className="w-8 h-8" />,
+    href: "https://github.com",
+    username: "@desarrollador",
+    description: "Código y proyectos open source",
+    color: "text-white",
+    bgGradient: "from-gray-800 to-gray-900",
+    hoverEffect: "hover:from-gray-700 hover:to-gray-800 hover:scale-105",
+  },
+  {
+    name: "LinkedIn",
+    icon: <Linkedin className="w-8 h-8" />,
+    href: "https://linkedin.com",
+    username: "Desarrollador Full Stack",
+    description: "Experiencia profesional y networking",
+    color: "text-white",
+    bgGradient: "from-blue-600 to-blue-700",
+    hoverEffect: "hover:from-blue-500 hover:to-blue-600 hover:scale-105",
+  },
+  {
+    name: "Instagram",
+    icon: <Instagram className="w-8 h-8" />,
+    href: "https://instagram.com",
+    username: "@dev_lifestyle",
+    description: "Detrás de escenas del desarrollo",
+    color: "text-white",
+    bgGradient: "from-pink-500 via-purple-500 to-indigo-500",
+    hoverEffect: "hover:from-pink-400 hover:via-purple-400 hover:to-indigo-400 hover:scale-105",
+  },
+  {
+    name: "Facebook",
+    icon: <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white">F</div>,
+    href: "https://facebook.com",
+    username: "Desarrollador Profesional",
+    description: "Actualizaciones y contenido técnico",
+    color: "text-white",
+    bgGradient: "from-blue-500 to-blue-600",
+    hoverEffect: "hover:from-blue-400 hover:to-blue-500 hover:scale-105",
+  },
+  {
+    name: "Gmail",
+    icon: <Mail className="w-8 h-8" />,
+    href: "mailto:desarrollador@gmail.com",
+    username: "desarrollador@gmail.com",
+    description: "Contacto directo para proyectos",
+    color: "text-white",
+    bgGradient: "from-red-500 to-red-600",
+    hoverEffect: "hover:from-red-400 hover:to-red-500 hover:scale-105",
+  },
+  {
+    name: "Discord",
+    icon: <MessageCircle className="w-8 h-8" />,
+    href: "https://discord.com",
+    username: "Developer#1234",
+    description: "Comunidad y colaboración en tiempo real",
+    color: "text-white",
+    bgGradient: "from-indigo-500 to-purple-600",
+    hoverEffect: "hover:from-indigo-400 hover:to-purple-500 hover:scale-105",
+  },
+]
 
 export function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [hoveredPlatform, setHoveredPlatform] = useState<string | null>(null)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePosition({ x: e.clientX, y: e.clientY })
+    }
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
-
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      })
-    }, 3000)
-  }
-
-  const contactInfo = [
-    {
-      icon: <Mail className="w-6 h-6" />,
-      label: "Email",
-      value: "desarrollador@email.com",
-      href: "mailto:desarrollador@email.com",
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      label: "Teléfono",
-      value: "+57 300 123 4567",
-      href: "tel:+573001234567",
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      label: "Ubicación",
-      value: "Bogotá, Colombia",
-      href: "#",
-    },
-  ]
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      icon: <Github className="w-6 h-6" />,
-      href: "https://github.com",
-      color: "hover:text-gray-900 dark:hover:text-gray-100",
-    },
-    {
-      name: "LinkedIn",
-      icon: <Linkedin className="w-6 h-6" />,
-      href: "https://linkedin.com",
-      color: "hover:text-blue-600",
-    },
-    {
-      name: "Instagram",
-      icon: <Instagram className="w-6 h-6" />,
-      href: "https://instagram.com",
-      color: "hover:text-pink-600",
-    },
-  ]
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   return (
-    <section id="contacto" className="py-20 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contacto" className="py-20 bg-background relative overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-primary/20 via-transparent to-accent/20" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk text-foreground mb-4">Trabajemos Juntos</h2>
-          <p className="text-xl text-muted-foreground font-dm-sans max-w-2xl mx-auto">
-            ¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y ayudarte a convertirlas en realidad.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
-          <Card className="p-8">
-            <div className="mb-6">
-              <h3 className="text-2xl font-bold font-space-grotesk text-foreground mb-2">Envíame un Mensaje</h3>
-              <p className="text-muted-foreground font-dm-sans">
-                Completa el formulario y te responderé lo antes posible.
-              </p>
-            </div>
-
-            {isSubmitted ? (
-              <div className="text-center py-12">
-                <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <h4 className="text-xl font-bold font-space-grotesk text-foreground mb-2">¡Mensaje Enviado!</h4>
-                <p className="text-muted-foreground font-dm-sans">Gracias por contactarme. Te responderé pronto.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="name">Nombre *</Label>
-                    <Input
-                      id="name"
-                      name="name"
-                      type="text"
-                      placeholder="Tu nombre completo"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      required
-                      className="bg-background"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email *</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      placeholder="tu@email.com"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                      className="bg-background"
-                    />
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="subject">Asunto *</Label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    type="text"
-                    placeholder="¿De qué quieres hablar?"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-background"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="message">Mensaje *</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    placeholder="Cuéntame sobre tu proyecto o idea..."
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={6}
-                    className="bg-background resize-none"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3"
-                >
-                  {isSubmitting ? (
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
-                      Enviando...
-                    </div>
-                  ) : (
-                    <div className="flex items-center gap-2">
-                      <Send className="w-4 h-4" />
-                      Enviar Mensaje
-                    </div>
-                  )}
-                </Button>
-              </form>
-            )}
-          </Card>
-
-          {/* Contact Info & Social */}
-          <div className="space-y-8">
-            {/* Contact Information */}
-            <Card className="p-8">
-              <h3 className="text-2xl font-bold font-space-grotesk text-foreground mb-6">Información de Contacto</h3>
-              <div className="space-y-6">
-                {contactInfo.map((info) => (
-                  <div key={info.label} className="flex items-center gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
-                      {info.icon}
-                    </div>
-                    <div>
-                      <p className="font-medium font-space-grotesk text-foreground">{info.label}</p>
-                      {info.href !== "#" ? (
-                        <a
-                          href={info.href}
-                          className="text-muted-foreground hover:text-primary transition-colors font-dm-sans"
-                        >
-                          {info.value}
-                        </a>
-                      ) : (
-                        <p className="text-muted-foreground font-dm-sans">{info.value}</p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Card>
-
-            {/* Social Links */}
-            <Card className="p-8">
-              <h3 className="text-2xl font-bold font-space-grotesk text-foreground mb-6">Sígueme</h3>
-              <div className="flex gap-4">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.name}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center w-12 h-12 bg-muted rounded-lg text-muted-foreground transition-all duration-200 hover:bg-primary/10 ${social.color}`}
-                    aria-label={social.name}
-                  >
-                    {social.icon}
-                  </a>
-                ))}
-              </div>
-              <p className="text-muted-foreground font-dm-sans mt-4 text-sm">
-                Conecta conmigo en redes sociales para ver mis últimos proyectos y actualizaciones.
-              </p>
-            </Card>
-
-            {/* Availability */}
-            <Card className="p-8 bg-primary/5 border-primary/20">
-              <h3 className="text-xl font-bold font-space-grotesk text-foreground mb-3">Disponibilidad</h3>
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-green-600 font-medium font-dm-sans">Disponible para proyectos</span>
-              </div>
-              <p className="text-muted-foreground font-dm-sans text-sm">
-                Actualmente acepto nuevos proyectos freelance y oportunidades de colaboración. Tiempo de respuesta:
-                24-48 horas.
-              </p>
-            </Card>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl font-bold font-space-grotesk gradient-text mb-6">Conectemos</h2>
+            <p className="text-xl text-muted-foreground font-dm-sans max-w-3xl mx-auto leading-relaxed">
+              Encuentra la mejor forma de contactarme según tu preferencia. Estoy activo en todas estas plataformas y
+              respondo rápidamente.
+            </p>
           </div>
-        </div>
+        </ScrollReveal>
+
+        {/* Social Media Hub */}
+        <ScrollReveal delay={200}>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {socialPlatforms.map((platform, index) => (
+              <div
+                key={platform.name}
+                className={`animate-stagger-${(index % 4) + 1}`}
+                onMouseEnter={() => setHoveredPlatform(platform.name)}
+                onMouseLeave={() => setHoveredPlatform(null)}
+              >
+                <a
+                  href={platform.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`
+                    block relative group cursor-pointer
+                    bg-gradient-to-br ${platform.bgGradient}
+                    rounded-2xl p-8 transition-all duration-500
+                    hover-lift ${platform.hoverEffect}
+                    glass border border-white/10
+                  `}
+                >
+                  {/* Platform Icon */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className={`${platform.color} group-hover:scale-110 transition-transform duration-300`}>
+                      {platform.icon}
+                    </div>
+                    <div className="w-3 h-3 bg-white/30 rounded-full group-hover:bg-white/60 transition-colors duration-300" />
+                  </div>
+
+                  {/* Platform Info */}
+                  <div className="space-y-3">
+                    <h3 className={`text-2xl font-bold font-space-grotesk ${platform.color}`}>{platform.name}</h3>
+                    <p className={`text-lg font-medium ${platform.color} opacity-90`}>{platform.username}</p>
+                    <p className={`text-sm ${platform.color} opacity-75 leading-relaxed`}>{platform.description}</p>
+                  </div>
+
+                  {/* Hover Glow Effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Animated Border */}
+                  <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-all duration-300" />
+                </a>
+
+                {/* Floating Tooltip */}
+                {hoveredPlatform === platform.name && (
+                  <div
+                    className="fixed z-50 pointer-events-none"
+                    style={{
+                      left: mousePosition.x + 20,
+                      top: mousePosition.y - 60,
+                    }}
+                  >
+                    <div className="glass rounded-lg p-3 border border-white/20 max-w-xs">
+                      <h4 className="font-bold text-foreground font-space-grotesk text-sm mb-1">
+                        Conectar en {platform.name}
+                      </h4>
+                      <p className="text-muted-foreground text-xs font-dm-sans">Haz clic para abrir {platform.name}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+
+        {/* Call to Action */}
+        <ScrollReveal delay={200}>
+          <div className="mt-20 text-center">
+            <div className="glass rounded-2xl p-8 border border-white/10 max-w-4xl mx-auto">
+              <h3 className="text-3xl font-bold font-space-grotesk gradient-text mb-4">¿Listo para colaborar?</h3>
+              <p className="text-muted-foreground font-dm-sans text-lg leading-relaxed mb-6">
+                Cada plataforma tiene su propósito. Elige la que mejor se adapte a tu tipo de proyecto o consulta.
+                Respondo en menos de 24 horas en todas las plataformas.
+              </p>
+
+              {/* Quick Stats */}
+              <div className="flex flex-wrap justify-center gap-6 mt-8">
+                <div className="glass rounded-lg px-6 py-3 border border-white/10">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-foreground font-semibold">Disponible ahora</span>
+                  </div>
+                </div>
+                <div className="glass rounded-lg px-6 py-3 border border-white/10">
+                  <span className="text-primary font-bold">&lt;24h&gt;</span>
+                  <span className="text-muted-foreground ml-2">Tiempo de respuesta</span>
+                </div>
+                <div className="glass rounded-lg px-6 py-3 border border-white/10">
+                  <span className="text-primary font-bold">100%</span>
+                  <span className="text-muted-foreground ml-2">Profesional</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   )

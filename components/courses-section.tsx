@@ -82,13 +82,13 @@ export function CoursesSection() {
   const getStatusColor = (status: Course["status"]) => {
     switch (status) {
       case "completed":
-        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+        return "bg-green-100 text-green-800 bg-green-900 text-green-200"
       case "in-progress":
-        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+        return "bg-blue-100 text-blue-800 bg-blue-900 text-blue-200"
       case "planned":
-        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+        return "bg-yellow-100 text-yellow-800 bg-yellow-900 text-yellow-200"
       default:
-        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+        return "bg-gray-100 text-gray-800 bg-gray-900 text-gray-200"
     }
   }
 
@@ -186,26 +186,6 @@ export function CoursesSection() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Stats */}
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-3xl font-bold font-space-grotesk text-primary mb-2">15+</div>
-            <div className="text-muted-foreground font-dm-sans">Cursos Completados</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold font-space-grotesk text-primary mb-2">500+</div>
-            <div className="text-muted-foreground font-dm-sans">Horas de Estudio</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold font-space-grotesk text-primary mb-2">8</div>
-            <div className="text-muted-foreground font-dm-sans">Certificaciones</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-bold font-space-grotesk text-primary mb-2">3</div>
-            <div className="text-muted-foreground font-dm-sans">En Progreso</div>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ export function Footer() {
 
           <div className="border-t border-border pt-6">
             <p className="text-muted-foreground font-dm-sans text-sm">
-              © 2024 Portafolio. Desarrollado con Next.js y Tailwind CSS.
+              © 2025 Portafolio. Desarrollado con Next.js y Tailwind CSS.
             </p>
           </div>
         </div>
