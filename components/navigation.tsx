@@ -16,11 +16,18 @@ export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState("inicio")
+  const [scrollWidth, setScrollWidth] = useState(0) // 👈 nuevo estado
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
 
+      // progreso de scroll
+      const scrolled = window.scrollY
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      setScrollWidth(Math.min(100, (scrolled / maxScroll) * 100))
+
+      // detectar sección activa
       const sections = navItems.map((item) => item.href.substring(1))
       const scrollPosition = window.scrollY + 100
 
@@ -39,6 +46,8 @@ export function Navigation() {
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll() // inicializar en el primer render
+
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -56,7 +65,7 @@ export function Navigation() {
         isScrolled ? "glass border-b border-white/10 shadow-2xl" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <div className="flex-shrink-0 group">
             <div className="flex items-center space-x-3">
@@ -152,9 +161,7 @@ export function Navigation() {
       <div className="absolute bottom-0 left-0 w-full h-1 bg-white/5">
         <div
           className="h-full bg-gradient-to-r from-primary to-accent transition-all duration-300"
-          style={{
-            width: `${Math.min(100, (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100)}%`,
-          }}
+          style={{ width: `${scrollWidth}%` }} // 👈 ahora usamos estado
         />
       </div>
     </nav>
