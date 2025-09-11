@@ -17,62 +17,34 @@ interface Course {
 
 const courses: Course[] = [
   {
-    title: "Desarrollo Full Stack con React y Node.js",
-    institution: "Platzi",
-    date: "2024",
-    duration: "120 horas",
-    description:
-      "Curso completo de desarrollo web moderno incluyendo React, Node.js, bases de datos y deployment en la nube.",
-    skills: ["React", "Node.js", "MongoDB", "Express", "JWT"],
-    certificateUrl: "#",
-    status: "completed",
-  },
-  {
-    title: "Arquitectura de Software y Patrones de Diseño",
-    institution: "Universidad Nacional",
-    date: "2024",
-    duration: "80 horas",
-    description:
-      "Estudio profundo de patrones de diseño, arquitecturas limpias y principios SOLID para desarrollo escalable.",
-    skills: ["Clean Architecture", "SOLID", "Design Patterns", "Microservices"],
-    certificateUrl: "#",
-    status: "completed",
-  },
-  {
-    title: "DevOps y Contenedores con Docker",
+    title: "Desarrollo Web Completo con HTML5, CSS3, JS AJAX PHP y MySQL",
     institution: "Udemy",
     date: "2023",
-    duration: "60 horas",
-    description: "Implementación de pipelines CI/CD, containerización con Docker y orquestación con Kubernetes.",
-    skills: ["Docker", "Kubernetes", "CI/CD", "AWS", "Jenkins"],
-    certificateUrl: "#",
+    duration: "150 horas",
+    description:
+      "Curso completo de desarrollo web moderno incluyendo React, Node.js, bases de datos y deployment en la nube.",
+    skills: ["React", "Node.js", "HTM", "Express", "JWT","CSS","PHP","MySQL","JavaScript","API Keys","Microservices"],
+    certificateUrl: "https://www.udemy.com/certificate/UC-157bb29b-4aeb-49dc-b200-353c93a54224/",
     status: "completed",
   },
   {
-    title: "Inteligencia Artificial y Machine Learning",
-    institution: "Coursera - Stanford",
+    title: "Laravel 9 - Crea Aplicaciones y Sitios Web con PHP 8 y MVC",
+    institution: "Udemy",
     date: "2024",
-    duration: "100 horas",
-    description: "Fundamentos de IA, algoritmos de ML, redes neuronales y aplicaciones prácticas en desarrollo web.",
-    skills: ["Python", "TensorFlow", "Scikit-learn", "Neural Networks"],
+    duration: "20 horas",
+    description:
+      "Aprendizaje de Framework de trabajo Laravel para mejor manejo de PHP y MVC",
+    skills: ["Frameworks", "SOLID","PHP", "Design Patterns", "Microservices"],
+    certificateUrl: "#",
     status: "in-progress",
   },
   {
-    title: "Ciberseguridad para Desarrolladores",
-    institution: "edX - MIT",
-    date: "2024",
-    duration: "90 horas",
-    description: "Principios de seguridad en aplicaciones web, autenticación, autorización y mejores prácticas.",
-    skills: ["Web Security", "OAuth", "Encryption", "Penetration Testing"],
-    status: "planned",
-  },
-  {
-    title: "Cloud Computing con AWS",
-    institution: "AWS Training",
-    date: "2023",
-    duration: "150 horas",
-    description: "Servicios de AWS, arquitecturas serverless, bases de datos en la nube y optimización de costos.",
-    skills: ["AWS Lambda", "S3", "RDS", "CloudFormation", "API Gateway"],
+    title: "Beginning C++ Programming - From Beginner to Beyond",
+    institution: "Udemy",
+    date: "2022",
+    duration: "60 horas",
+    description: "Curso sobre C++ moderno, que abarca desde conceptos básicos hasta temas avanzados como herencia y funciones polimórficas, incluyendo el uso de Visual Studio Code, expresiones lambda y ejercicios prácticos con quizzes y desafíos de codificación.",
+    skills: ["C++", "Herencia y Polimorfismo", "Visual Studio Code", "Expresiones Lambda"],
     certificateUrl: "#",
     status: "completed",
   },
@@ -82,13 +54,13 @@ export function CoursesSection() {
   const getStatusColor = (status: Course["status"]) => {
     switch (status) {
       case "completed":
-        return "bg-green-100 text-green-800 bg-green-900 text-green-200"
+        return "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
       case "in-progress":
-        return "bg-blue-100 text-blue-800 bg-blue-900 text-blue-200"
+        return "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
       case "planned":
-        return "bg-yellow-100 text-yellow-800 bg-yellow-900 text-yellow-200"
+        return "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
       default:
-        return "bg-gray-100 text-gray-800 bg-gray-900 text-gray-200"
+        return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
     }
   }
 
@@ -110,83 +82,80 @@ export function CoursesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk text-foreground mb-4">Formación Continua</h2>
+          <h2 className="text-4xl md:text-5xl font-bold font-space-grotesk text-foreground mb-4">
+            Formación Continua
+          </h2>
           <p className="text-xl text-muted-foreground font-dm-sans max-w-2xl mx-auto">
             Cursos y certificaciones que complementan mi formación académica y mantienen mis conocimientos actualizados.
           </p>
         </div>
 
-        {/* Courses Timeline */}
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-0.5 h-full bg-border"></div>
-
-          <div className="space-y-12">
-            {courses.map((course, index) => (
-              <div
-                key={course.title}
-                className={`relative flex items-center ${
-                  index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                } flex-col md:gap-8`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 -translate-y-1/2 top-1/2">
-                  <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg"></div>
+        {/* Courses Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {courses.map((course) => (
+            <Card 
+              key={course.title} 
+              className="p-6 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-l-4 border-l-primary"
+            >
+              {/* Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold font-space-grotesk text-foreground mb-2 line-clamp-2">
+                    {course.title}
+                  </h3>
+                  <p className="text-primary font-medium font-dm-sans mb-1">
+                    {course.institution}
+                  </p>
                 </div>
-
-                {/* Course Card */}
-                <div className={`w-full md:w-1/2 ml-12 md:ml-0 ${index % 2 === 0 ? "md:pr-8" : "md:pl-8"}`}>
-                  <Card className="p-6 hover:shadow-lg transition-shadow duration-200">
-                    {/* Header */}
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <h3 className="text-xl font-bold font-space-grotesk text-foreground mb-2">{course.title}</h3>
-                        <p className="text-primary font-medium font-dm-sans mb-1">{course.institution}</p>
-                      </div>
-                      <Badge className={getStatusColor(course.status)}>{getStatusText(course.status)}</Badge>
-                    </div>
-
-                    {/* Meta Info */}
-                    <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar size={14} />
-                        {course.date}
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Clock size={14} />
-                        {course.duration}
-                      </div>
-                      {course.certificateUrl && (
-                        <div className="flex items-center gap-1">
-                          <Award size={14} />
-                          <a
-                            href={course.certificateUrl}
-                            className="text-primary hover:underline"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            Certificado
-                          </a>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-muted-foreground font-dm-sans mb-4 leading-relaxed">{course.description}</p>
-
-                    {/* Skills */}
-                    <div className="flex flex-wrap gap-2">
-                      {course.skills.map((skill) => (
-                        <Badge key={skill} variant="outline" className="text-xs">
-                          {skill}
-                        </Badge>
-                      ))}
-                    </div>
-                  </Card>
-                </div>
+                <Badge className={`${getStatusColor(course.status)} flex-shrink-0 ml-3`}>
+                  {getStatusText(course.status)}
+                </Badge>
               </div>
-            ))}
-          </div>
+
+              {/* Meta Info */}
+              <div className="flex flex-wrap gap-4 mb-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-1">
+                  <Calendar size={14} />
+                  {course.date}
+                </div>
+                <div className="flex items-center gap-1">
+                  <Clock size={14} />
+                  {course.duration}
+                </div>
+                {course.certificateUrl && course.certificateUrl !== "#" && (
+                  <div className="flex items-center gap-1">
+                    <Award size={14} />
+                    <a
+                      href={course.certificateUrl}
+                      className="text-primary hover:underline transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Certificado
+                    </a>
+                  </div>
+                )}
+              </div>
+
+              {/* Description */}
+              <p className="text-muted-foreground font-dm-sans mb-4 leading-relaxed text-sm">
+                {course.description}
+              </p>
+
+              {/* Skills */}
+              <div className="flex flex-wrap gap-2">
+                {course.skills.map((skill) => (
+                  <Badge 
+                    key={skill} 
+                    variant="outline" 
+                    className="text-xs hover:bg-primary hover:text-primary-foreground transition-colors cursor-default"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </section>

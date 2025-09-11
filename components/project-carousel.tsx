@@ -19,65 +19,113 @@ interface Project {
 const projects: Project[] = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Bienes Raices",
     description:
-      "Plataforma de comercio electrónico completa desarrollada con Next.js, TypeScript y Stripe. Incluye gestión de inventario, carrito de compras, procesamiento de pagos y panel de administración. Implementa autenticación segura y diseño responsive optimizado para conversiones.",
+      "Plataforma integral para la gestión de propiedades, que permite al administrador gestionar el inventario inmobiliario y a los usuarios explorar viviendas disponibles, conocer la trayectoria de la empresa y establecer contacto de manera eficiente.",
     mainImage: "/modern-ecommerce-interface.png",
     thumbnails: [
-      "/ecommerce-product-grid.png",
-      "/shopping-cart-interface.jpg",
-      "/payment-checkout-form.jpg",
-      "/admin-dashboard-analytics.jpg",
+      "/bienesraices1.png",
+      "/bienesraices2.png",
+      "/bienesraices3.png",
+      "/bienesraices4.png",
     ],
-    technologies: ["Next.js", "TypeScript", "Stripe", "Tailwind CSS", "Prisma"],
+    technologies: ["HTML", "CSS", "SASS", "JavaScript", "PHP"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
     id: 2,
-    title: "Task Management App",
+    title: "Black Lyon - Gim",
     description:
-      "Aplicación de gestión de tareas colaborativa con funcionalidades en tiempo real. Permite crear equipos, asignar tareas, establecer deadlines y hacer seguimiento del progreso. Incluye notificaciones push, chat integrado y reportes de productividad.",
-    mainImage: "/task-management-dashboard.png",
+      "Plataforma integral para la gestión de gimnasios, que permite a los clientes crear cuentas, gestionar pases y acceder a rutinas con instrucciones visuales. Los administradores y moderadores pueden controlar clientes, precios, ejercicios, notificaciones y supervisar la actividad del equipo, optimizando la operación del gimnasio.",
+    mainImage: "/modern-ecommerce-interface.png",
     thumbnails: [
-      "/kanban-board-tasks.jpg",
-      "/team-collaboration-interface.png",
-      "/calendar-view-tasks.jpg",
-      "/productivity-analytics-charts.jpg",
+      "/blacklyon1.png",
+      "/blacklyon2.png",
+      "/blacklyon3.png",
+      "/blacklyon4.png",
     ],
-    technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
+    technologies: ["Next.Js","Vercel","SupaBase"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
     id: 3,
-    title: "AI Content Generator",
+    title: "AppSalon",
     description:
-      "Herramienta de generación de contenido impulsada por IA que ayuda a crear textos, imágenes y código. Integra múltiples modelos de IA, ofrece plantillas personalizables y permite exportar en diversos formatos. Incluye sistema de créditos y colaboración en equipo.",
-    mainImage: "/ai-content-generation-interface.jpg",
+      "Plataforma de gestión de servicios y turnos para salones, que permite al administrador administrar los servicios y su agenda, mientras que los clientes pueden seleccionar servicios, programar turnos y visualizar un resumen detallado de su reserva.",
+    mainImage: "/task-management-dashboard.png",
     thumbnails: [
-      "/text-generation-editor.jpg",
-      "/image-ai-generator.jpg",
-      "/code-generation-tool.jpg",
-      "/content-templates-library.png",
+      "/appsalon1.png",
+      "/appsalon2.png",
+      "/appsalon3.png",
+      "/appsalon4.png",
     ],
-    technologies: ["Next.js", "OpenAI API", "Supabase", "Tailwind CSS", "Vercel AI SDK"],
+    technologies: ["HTML", "CSS", "SASS", "JavaScript", "PHP"],
     liveUrl: "#",
     githubUrl: "#",
   },
   {
     id: 4,
-    title: "Real Estate Platform",
+    title: "DevWebCamp",
     description:
-      "Plataforma inmobiliaria moderna con búsqueda avanzada, tours virtuales 360° y sistema de gestión para agentes. Incluye mapas interactivos, calculadora de hipotecas, sistema de citas y CRM integrado para seguimiento de leads.",
+      "Plataforma para la gestión y participación en eventos de desarrollo web, donde los clientes pueden explorar conferencias y workshops, adquirir pases con beneficios adicionales mediante PayPal, y los administradores pueden gestionar eventos, controlar inscripciones y acceder a estadísticas completas.",
+    mainImage: "/ai-content-generation-interface.jpg",
+    thumbnails: [
+      "/devwebcamp1.png",
+      "/devwebcamp2.png",
+      "/devwebcamp3.png",
+      "/devwebcamp4.png",
+    ],
+    technologies: ["HTML", "CSS", "SASS", "JavaScript", "PHP", "Google Maps API", "PayPal"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: 5,
+    title: "UpTask",
+    description:
+      "Plataforma de gestión de proyectos y tareas, que permite crear proyectos, agregar y organizar tareas, actualizar su estado y eliminar elementos, facilitando un seguimiento eficiente del progreso de cada proyecto.",
     mainImage: "/real-estate-platform.png",
     thumbnails: [
-      "/property-search-results.jpg",
-      "/virtual-tour-interface.jpg",
-      "/interactive-map-properties.jpg",
-      "/agent-dashboard-crm.jpg",
+      "/uptask1.png",
+      "/uptask2.png",
+      "/uptask3.png",
+      "/uptask4.png",
     ],
-    technologies: ["Vue.js", "Laravel", "MySQL", "Google Maps API", "Three.js"],
+    technologies: ["HTML", "CSS", "SASS", "JavaScript", "PHP"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: 6,
+    title: "Blog de Cafe",
+    description:
+      "Plataforma informativa sobre el mundo del café, que ofrece historia, precios, disponibilidad en distintos locales y la posibilidad de contactar directamente con los establecimientos.",
+    mainImage: "/real-estate-platform.png",
+    thumbnails: [
+      "/blogdecafe1.png",
+      "/blogdecafe2.png",
+      "/blogdecafe3.png",
+      "/blogdecafe4.png",
+    ],
+    technologies: ["HTML", "CSS"],
+    liveUrl: "#",
+    githubUrl: "#",
+  },
+  {
+    id: 7,
+    title: "Rock & EDM Festival",
+    description:
+      "Plataforma informativa sobre festivales musicales, que permite conocer artistas, bandas, horarios de presentación y explorar la galería de imágenes del evento.",
+    mainImage: "/real-estate-platform.png",
+    thumbnails: [
+      "/festival1.png",
+      "/festival2.png",
+      "/festival3.png",
+      "/festival4.png",
+    ],
+    technologies: ["HTML", "CSS", "SASS", "JavaScript", "PHP"],
     liveUrl: "#",
     githubUrl: "#",
   },
@@ -89,12 +137,24 @@ export function ProjectCarousel() {
   const [isPlaying, setIsPlaying] = useState(true)
   const [progress, setProgress] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
   const intervalRef = useRef<NodeJS.Timeout | null>(null)
 
   const SLIDE_DURATION = 5000 // 5 seconds
 
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const handleResize = () => setIsMobile(window.innerWidth < 1024); // lg breakpoint
+  handleResize(); // set initial value
+  window.addEventListener("resize", handleResize);
+  return () => window.removeEventListener("resize", handleResize);
+}, []);
+
+
   useEffect(() => {
-    if (isPlaying && !isHovered) {
+    if (isPlaying && !isHovered && !isModalOpen) {
       intervalRef.current = setInterval(() => {
         setProgress((prev) => {
           if (prev >= 100) {
@@ -202,14 +262,36 @@ export function ProjectCarousel() {
             <div className="space-y-6">
               {/* Main Image */}
               <div className="relative group">
+                {/* Fondo brillante */}
                 <div className="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200" />
+
                 <img
                   src={project.thumbnails[selectedThumbnail] || "/placeholder.svg"}
                   alt={`${project.title} - Vista ${selectedThumbnail + 1}`}
-                  className="relative w-full h-80 object-cover rounded-xl shadow-2xl transition-all duration-500 group-hover:scale-[1.02] hover-lift glass border border-white/10"
+                  className="relative w-full h-80 object-cover rounded-xl shadow-2xl transition-all duration-500 group-hover:scale-[1.02] hover-lift glass border border-white/10 cursor-pointer"
+                  onClick={() => setIsModalOpen(true)}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+
+                {/* Flechas para móvil */}
+                {isMobile && (
+                  <>
+                    <button
+                      onClick={prevProject}
+                      className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full"
+                    >
+                      <ChevronLeft size={20} />
+                    </button>
+                    <button
+                      onClick={nextProject}
+                      className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white p-2 rounded-full"
+                    >
+                      <ChevronRight size={20} />
+                    </button>
+                  </>
+                )}
               </div>
+
 
               <div className="grid grid-cols-4 gap-3">
                 {project.thumbnails.map((thumb, index) => (
@@ -243,23 +325,25 @@ export function ProjectCarousel() {
             </div>
 
             {/* Right Side - Project Info */}
-            <div className="space-y-8">
-              <div className="glass rounded-2xl p-8 border border-white/10">
-                <h3 className="text-4xl font-bold font-space-grotesk gradient-text mb-6">{project.title}</h3>
-                <p className="text-muted-foreground font-dm-sans leading-relaxed text-lg mb-6">{project.description}</p>
+            <div className="space-y-8 h-auto sm:h-[500px] overflow-y-visible sm:overflow-y-auto">
+              <div className="glass rounded-2xl p-8 border border-white/10 h-full flex flex-col justify-between">
+                <div>
+                  <h3 className="text-4xl font-bold font-space-grotesk gradient-text mb-6">{project.title}</h3>
+                  <p className="text-muted-foreground font-dm-sans leading-relaxed text-lg mb-6">{project.description}</p>
 
-                {/* Technologies */}
-                <div className="mb-8">
-                  <h4 className="text-xl font-semibold font-space-grotesk text-foreground mb-4">Tecnologías</h4>
-                  <div className="flex flex-wrap gap-3">
-                    {project.technologies.map((tech, index) => (
-                      <span
-                        key={tech}
-                        className={`px-4 py-2 glass rounded-full text-sm font-medium hover-lift animate-stagger-${(index % 4) + 1} border border-white/10 text-foreground hover:border-primary/50 transition-all duration-300`}
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {/* Technologies */}
+                  <div className="mb-8">
+                    <h4 className="text-xl font-semibold font-space-grotesk text-foreground mb-4">Tecnologías</h4>
+                    <div className="flex flex-wrap gap-3">
+                      {project.technologies.map((tech, index) => (
+                        <span
+                          key={tech}
+                          className={`px-4 py-2 glass rounded-full text-sm font-medium hover-lift animate-stagger-${(index % 4) + 1} border border-white/10 text-foreground hover:border-primary/50 transition-all duration-300`}
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
@@ -283,10 +367,11 @@ export function ProjectCarousel() {
                 </div>
               </div>
             </div>
+
           </div>
         </ScrollReveal>
 
-          <div className="flex justify-center items-center mt-16">
+          <div className={`flex justify-center items-center mt-16 ${isMobile ? "hidden" : ""}`}>
             <div className="glass rounded-2xl p-6 border border-white/10 flex items-center space-x-6">
               <Button
                 variant="outline"
@@ -323,6 +408,34 @@ export function ProjectCarousel() {
           </div>
 
       </div>
+
+{isModalOpen && (
+  <div
+    className="fixed inset-0 z-50 flex items-center justify-center bg-black/80"
+    onClick={() => setIsModalOpen(false)} // cerrar al hacer click fuera
+  >
+    <div
+      className="max-w-[90%] max-h-[90%] relative"
+      onClick={(e) => e.stopPropagation()} // evitar que se cierre al clickear la imagen
+    >
+      <img
+        src={project.thumbnails[selectedThumbnail] || "/placeholder.svg"}
+        alt="Imagen ampliada"
+        className="w-full h-full object-contain rounded-lg"
+      />
+      <button
+        className="absolute top-2 right-2 text-red-500 hover:text-red-700 text-4xl p-2 font-bold"
+        onClick={() => setIsModalOpen(false)}
+        aria-label="Cerrar imagen"
+      >
+        &times;
+      </button>
+    </div>
+  </div>
+)}
+
+
+
     </section>
   )
 }

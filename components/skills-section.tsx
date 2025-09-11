@@ -56,6 +56,11 @@ const skillCategories = [
         icon: "🅰️",
         color: "from-red-600 to-red-400",
       },
+      {
+        name: "Next.js",
+        icon: "🖥️",
+        color: "from-black to-gray-800",
+      }
     ],
   },
   {

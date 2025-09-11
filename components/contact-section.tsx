@@ -1,9 +1,8 @@
 "use client"
 
 import type React from "react"
-
 import { useState, useEffect } from "react"
-import { Mail, Github, Linkedin, Instagram, MessageCircle } from "lucide-react"
+import { createPortal } from "react-dom"
 import { ScrollReveal } from "@/components/scroll-reveal"
 
 interface SocialPlatform {
@@ -20,9 +19,9 @@ interface SocialPlatform {
 const socialPlatforms: SocialPlatform[] = [
   {
     name: "GitHub",
-    icon: <Github className="w-8 h-8" />,
-    href: "https://github.com",
-    username: "@desarrollador",
+    icon: <div className="w-8 h-8 bg-gray-900 rounded-full flex items-center justify-center text-white font-bold">GH</div>,
+    href: "https://github.com/TomasSargentoni",
+    username: "@TomasSargentoni",
     description: "Código y proyectos open source",
     color: "text-white",
     bgGradient: "from-gray-800 to-gray-900",
@@ -30,8 +29,8 @@ const socialPlatforms: SocialPlatform[] = [
   },
   {
     name: "LinkedIn",
-    icon: <Linkedin className="w-8 h-8" />,
-    href: "https://linkedin.com",
+    icon: <div className="w-8 h-8 bg-blue-700 rounded-full flex items-center justify-center text-white font-bold">in</div>,
+    href: "https://linkedin.com/in/tomas-sargentoni",
     username: "Desarrollador Full Stack",
     description: "Experiencia profesional y networking",
     color: "text-white",
@@ -40,9 +39,9 @@ const socialPlatforms: SocialPlatform[] = [
   },
   {
     name: "Instagram",
-    icon: <Instagram className="w-8 h-8" />,
-    href: "https://instagram.com",
-    username: "@dev_lifestyle",
+    icon: <div className="w-8 h-8 bg-gradient-to-tr from-pink-500 via-purple-500 to-indigo-500 rounded-full flex items-center justify-center text-white font-bold">IG</div>,
+    href: "https://www.instagram.com/tomassargentoni/",
+    username: "@tomassargentoni",
     description: "Detrás de escenas del desarrollo",
     color: "text-white",
     bgGradient: "from-pink-500 via-purple-500 to-indigo-500",
@@ -50,8 +49,8 @@ const socialPlatforms: SocialPlatform[] = [
   },
   {
     name: "Facebook",
-    icon: <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white">F</div>,
-    href: "https://facebook.com",
+    icon: <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold">F</div>,
+    href: "https://www.facebook.com/tomas.sargentoni.2025/?locale=es_LA",
     username: "Desarrollador Profesional",
     description: "Actualizaciones y contenido técnico",
     color: "text-white",
@@ -60,9 +59,9 @@ const socialPlatforms: SocialPlatform[] = [
   },
   {
     name: "Gmail",
-    icon: <Mail className="w-8 h-8" />,
-    href: "mailto:desarrollador@gmail.com",
-    username: "desarrollador@gmail.com",
+    icon: <div className="w-8 h-8 bg-red-500 rounded-full flex items-center justify-center text-white font-bold">M</div>,
+    href: "mailto:tomassargentoni92@gmail.com",
+    username: "tomassargentoni92@gmail.com",
     description: "Contacto directo para proyectos",
     color: "text-white",
     bgGradient: "from-red-500 to-red-600",
@@ -70,9 +69,9 @@ const socialPlatforms: SocialPlatform[] = [
   },
   {
     name: "Discord",
-    icon: <MessageCircle className="w-8 h-8" />,
+    icon: <div className="w-8 h-8 bg-indigo-500 rounded-full flex items-center justify-center text-white font-bold">D</div>,
     href: "https://discord.com",
-    username: "Developer#1234",
+    username: "tomas.sargentoni",
     description: "Comunidad y colaboración en tiempo real",
     color: "text-white",
     bgGradient: "from-indigo-500 to-purple-600",
@@ -156,28 +155,32 @@ export function ContactSection() {
                   {/* Animated Border */}
                   <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-white/30 transition-all duration-300" />
                 </a>
-
-                {/* Floating Tooltip */}
-                {hoveredPlatform === platform.name && (
-                  <div
-                    className="fixed z-50 pointer-events-none"
-                    style={{
-                      left: mousePosition.x + 20,
-                      top: mousePosition.y - 60,
-                    }}
-                  >
-                    <div className="glass rounded-lg p-3 border border-white/20 max-w-xs">
-                      <h4 className="font-bold text-foreground font-space-grotesk text-sm mb-1">
-                        Conectar en {platform.name}
-                      </h4>
-                      <p className="text-muted-foreground text-xs font-dm-sans">Haz clic para abrir {platform.name}</p>
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
           </div>
         </ScrollReveal>
+
+        {/* Floating Tooltip mounted in body */}
+        {hoveredPlatform &&
+          createPortal(
+            <div
+              className="fixed z-50 pointer-events-none"
+              style={{
+                left: Math.min(mousePosition.x + 12, window.innerWidth - 220),
+                top: Math.min(mousePosition.y + 12, window.innerHeight - 80),
+              }}
+            >
+              <div className="glass rounded-lg p-3 border border-white/20 max-w-xs shadow-lg">
+                <h4 className="font-bold text-foreground font-space-grotesk text-sm mb-1">
+                  Conectar en {hoveredPlatform}
+                </h4>
+                <p className="text-muted-foreground text-xs font-dm-sans">
+                  Haz clic para abrir {hoveredPlatform}
+                </p>
+              </div>
+            </div>,
+            document.body
+          )}
 
         {/* Call to Action */}
         <ScrollReveal delay={200}>
@@ -200,10 +203,6 @@ export function ContactSection() {
                 <div className="glass rounded-lg px-6 py-3 border border-white/10">
                   <span className="text-primary font-bold">&lt;24h&gt;</span>
                   <span className="text-muted-foreground ml-2">Tiempo de respuesta</span>
-                </div>
-                <div className="glass rounded-lg px-6 py-3 border border-white/10">
-                  <span className="text-primary font-bold">100%</span>
-                  <span className="text-muted-foreground ml-2">Profesional</span>
                 </div>
               </div>
             </div>

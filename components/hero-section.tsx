@@ -159,9 +159,9 @@ export function HeroSection() {
         <ScrollReveal delay={200}>
           <div className="flex justify-center space-x-8 mb-16">
             {[
-              { icon: Github, href: "#", label: "GitHub" },
-              { icon: Linkedin, href: "#", label: "LinkedIn" },
-              { icon: Mail, href: "#", label: "Email" },
+              { icon: Github, href: "https://github.com/TomasSargentoni", label: "GitHub" },
+              { icon: Linkedin, href: "https://linkedin.com/in/tomas-sargentoni", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:tomassargentoni92@gmail.com", label: "Email" },
             ].map(({ icon: Icon, href, label }, index) => (
               <a
                 key={label}
