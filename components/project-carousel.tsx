@@ -416,7 +416,7 @@ useEffect(() => {
   >
     <div
       className="max-w-[90%] max-h-[90%] relative"
-      onClick={(e) => e.stopPropagation()} // evitar que se cierre al clickear la imagen
+      onClick={(e) => e.stopPropagation()} // evitar cierre al clickear la imagen
     >
       <img
         src={project.thumbnails[selectedThumbnail] || "/placeholder.svg"}
@@ -424,7 +424,7 @@ useEffect(() => {
         className="w-full h-full object-contain rounded-lg"
       />
       <button
-        className="absolute top-2 right-2 text-red-500 hover:text-red-700 text-4xl p-2 font-bold"
+        className="absolute top-2 right-2 p-2 rounded-full bg-black/50 hover:bg-black/70 text-red-500 hover:text-red-700 text-4xl font-bold flex items-center justify-center"
         onClick={() => setIsModalOpen(false)}
         aria-label="Cerrar imagen"
       >
@@ -433,6 +433,7 @@ useEffect(() => {
     </div>
   </div>
 )}
+
 
 
 
